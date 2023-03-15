@@ -48,7 +48,7 @@ const WelcomeScreen = (props: Props) => {
           text={activeIndex === 0 ? 'Get Started' : 'Continue'}
           textColor={Colors.white}
           fontSize={20}
-          borderRadius={10}
+          borderRadius={14}
           bgColor={Colors.green}
           width={WIDTH * 0.9}
           height={56}

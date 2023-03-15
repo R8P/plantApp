@@ -2,6 +2,9 @@ import React from 'react';
 import HomeScreen from '../Screens/HomeScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Tabbar from '../Components/Tabbar/Tabbar';
+import DiagnoseScreen from '../Screens/DiagnoseScreen';
+import MyGardenScreen from '../Screens/MyGardenScreen';
+import ProfileScreen from '../Screens/ProfileScreen';
 
 const App = createBottomTabNavigator();
 const screenOptions = {
@@ -17,6 +20,9 @@ const AppStack = () => {
     //   tabBar={props => <Tabbar {...props} />}
       >
       <App.Screen name="HomeScreen" component={HomeScreen} />
+      <App.Screen name="DiagnoseScreen" component={DiagnoseScreen} />
+      <App.Screen name="MyGardenScreen" component={MyGardenScreen} />
+      <App.Screen name="ProfileScreen" component={ProfileScreen} />
     </App.Navigator>
   );
 };
