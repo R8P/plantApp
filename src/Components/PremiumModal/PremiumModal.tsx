@@ -66,18 +66,18 @@ const PremiumModal = () => {
               <View style={styles.featureBox}>
                 <Image
                   style={styles.icon}
-                  source={require('../../Assets/feature1.png')}
+                  source={require('../../Assets/feature2.png')}
                 />
-                <Text style={styles.featureTextBold}>Unlimited</Text>
-                <Text style={styles.featureText}>Plant Identify</Text>
+                <Text style={styles.featureTextBold}>Faster</Text>
+                <Text style={styles.featureText}>Process</Text>
               </View>
               <View style={styles.featureBox}>
                 <Image
                   style={styles.icon}
                   source={require('../../Assets/feature1.png')}
                 />
-                <Text style={styles.featureTextBold}>Unlimited</Text>
-                <Text style={styles.featureText}>Plant Identify</Text>
+                <Text style={styles.featureTextBold}>Detailed</Text>
+                <Text style={styles.featureText}>Plant care</Text>
               </View>
             </ScrollView>
           </View>

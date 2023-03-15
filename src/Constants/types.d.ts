@@ -1,10 +1,13 @@
 export type InitialState = {
-  isWelcomeDone: boolean;
+  isOnBoardingDone: boolean;
   premium_modal_visible: boolean;
+  categories: CategoriesType[];
+  questions: QuestionsType[];
+  loading: boolean;
 };
 
-export type WelcomeStackParams = {
-  WelcomeScreen: undefined;
+export type OnBoardingStackParams = {
+  OnBoardingScreen: undefined;
 };
 
 export type AppStackParams = {

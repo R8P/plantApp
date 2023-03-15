@@ -3,28 +3,27 @@ import React from 'react';
 import {HEIGHT, WIDTH, responsive} from '../../Constants/Helpers';
 import {Colors} from '../../Constants/Colors';
 
-const WelcomePage2 = () => {
+const OnBoarding3 = () => {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Take a photo to</Text>
+          <Text style={styles.title}>Get plant</Text>
           <View>
-            <Text style={styles.titleBold}>identify</Text>
+            <Text style={styles.titleBold}>care guides</Text>
             <Image
               style={styles.brush}
               source={require('../../Assets/brush.png')}
             />
           </View>
         </View>
-        <Text style={styles.title}>the plant!</Text>
       </View>
-      <Image style={styles.img} source={require('../../Assets/welcome2.png')} />
+      <Image style={styles.img} source={require('../../Assets/welcome3.png')} />
     </View>
   );
 };
 
-export default WelcomePage2;
+export default OnBoarding3;
 
 const styles = StyleSheet.create({
   container: {

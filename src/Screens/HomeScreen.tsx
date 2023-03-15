@@ -15,33 +15,28 @@ import {setPremiumModal} from '../Redux/reducers/reducers';
 import {Colors} from '../Constants/Colors';
 import {WIDTH, responsive} from '../Constants/Helpers';
 import {TextInput} from 'react-native-gesture-handler';
-import {getCategories, getQuestions} from '../Redux/services/services';
+
 import {
   AppStackParams,
   QuestionsType,
   CategoriesType,
 } from '../Constants/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {getCategories, getQuestions} from '../Redux/actions/actions';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParams, 'HomeScreen'>;
 };
 const HomeScreen = ({navigation}: Props) => {
-  const [questionList, setQuestionList] = useState<QuestionsType[]>([]);
-  const [categoriesList, setCategoriesList] = useState<CategoriesType[]>([]);
-
-  const {premium_modal_visible} = useAppSelector(state => state.global);
+  const {premium_modal_visible, questions, categories} = useAppSelector(
+    state => state.global,
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch(setPremiumModal());
-    getQuestions().then((res: any) => {
-      setQuestionList(res.data);
-    });
-    getCategories().then((res: any) => {
-      setCategoriesList(res.data.data);
-      console.log('categories', res.data.data);
-    });
+    dispatch(setPremiumModal());
+    dispatch(getQuestions());
+    dispatch(getCategories());
   }, []);
 
   return (
@@ -86,7 +81,7 @@ const HomeScreen = ({navigation}: Props) => {
           <View style={styles.questionsArea}>
             <Text style={styles.questionsTitle}>Get Started</Text>
             <ScrollView horizontal={true}>
-              {questionList.map((item: QuestionsType, index: number) => {
+              {questions.map((item: QuestionsType, index: number) => {
                 return (
                   <TouchableOpacity
                     activeOpacity={0.8}
@@ -105,7 +100,7 @@ const HomeScreen = ({navigation}: Props) => {
             </ScrollView>
           </View>
           <View style={styles.categoriesArea}>
-            {categoriesList.map((item: CategoriesType, index: number) => {
+            {categories.map((item: CategoriesType, index: number) => {
               return (
                 <TouchableOpacity
                   key={index}
@@ -217,7 +212,7 @@ const styles = StyleSheet.create({
   },
   categoriesArea: {
     flex: 1,
-    paddingBottom:responsive(20),
+    paddingBottom: responsive(20),
     marginTop: responsive(24),
     marginHorizontal: responsive(24),
     flexDirection: 'row',

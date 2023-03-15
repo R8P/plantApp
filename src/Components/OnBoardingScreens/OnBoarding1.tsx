@@ -1,9 +1,9 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {HEIGHT, WIDTH, responsive} from '../../Constants/Helpers';
 import {Colors} from '../../Constants/Colors';
 
-const WelcomePage1 = () => {
+const OnBoarding1 = () => {
   return (
     <View>
       <View style={styles.textContainer}>
@@ -21,16 +21,20 @@ const WelcomePage1 = () => {
           By tapping next, you are agreeing to PlantID
         </Text>
         <View style={styles.bottomTextRow}>
-          <Text style={styles.underLineText}>Terms of Use</Text>
+          <TouchableOpacity>
+            <Text style={styles.underLineText}>Terms of Use</Text>
+          </TouchableOpacity>
           <Text style={styles.symbol}>&</Text>
-          <Text style={styles.underLineText}>Privacy Policy.</Text>
+          <TouchableOpacity>
+            <Text style={styles.underLineText}>Privacy Policy.</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
 
-export default WelcomePage1;
+export default OnBoarding1;
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
   bottomText: {
     fontSize: responsive(11),
     color: Colors.textGray,
-    marginBottom:responsive(4)
+    marginBottom: responsive(4),
   },
   underLineText: {
     fontSize: responsive(11),
@@ -89,6 +93,6 @@ const styles = StyleSheet.create({
   symbol: {
     fontSize: responsive(11),
     color: Colors.textGray,
-    marginHorizontal:responsive(4)
+    marginHorizontal: responsive(4),
   },
 });

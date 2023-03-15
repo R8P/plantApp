@@ -2,36 +2,32 @@ import axios from 'axios';
 
 const BASE_URL = 'https://dummy-api-jtg6bessta-ey.a.run.app';
 
-export async function getCategories() {
-  return new Promise((resolve, reject) => {
-    const config: any = {
-      header: 'Content-Type: application/json',
+export async function GetCategoriesAsync() {
+  try {
+    const response = await axios.get(`${BASE_URL}/getCategories`);
+    return {
+      status: response.status,
+      data: response.data,
     };
-    axios
-      .get(`${BASE_URL}/getCategories`, config)
-      .then(val => {
-        resolve(val);
-      })
-      .catch(error => {
-        console.log(error);
-        reject(error);
-      });
-  });
+  } catch (error: any) {
+    return {
+      status: error.response.statusCode,
+      data: null,
+    };
+  }
 }
 
-export async function getQuestions() {
-  return new Promise((resolve, reject) => {
-    const config: any = {
-      header: 'Content-Type: application/json',
+export async function GetQuestionsAsync() {
+  try {
+    const response = await axios.get(`${BASE_URL}/getQuestions`);
+    return {
+      status: response.status,
+      data: response.data,
     };
-    axios
-      .get(`${BASE_URL}/getQuestions`, config)
-      .then(val => {
-        resolve(val);
-      })
-      .catch(error => {
-        console.log(error);
-        reject(error);
-      });
-  });
+  } catch (error: any) {
+    return {
+      status: error.response.statusCode,
+      data: null,
+    };
+  }
 }

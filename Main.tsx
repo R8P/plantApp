@@ -2,31 +2,29 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AppStack from './src/Stacks/AppStack';
-import WelcomeStack from './src/Stacks/WelcomeStack';
+import OnBoardingStack from './src/Stacks/OnBoardingStack';
 import {useAppDispatch, useAppSelector} from './src/Redux/store/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {setIsWelcomeDone} from './src/Redux/reducers/reducers';
+import {setIsOnBoardingDone} from './src/Redux/reducers/reducers';
 
 type Props = {};
 
 const Main = (props: Props) => {
-  const {isWelcomeDone} = useAppSelector(state => state.global);
+  const {isOnBoardingDone} = useAppSelector(state => state.global);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    AsyncStorage.getItem('WELCOME_DONE').then(value => {
+    AsyncStorage.getItem('ONBOARDING').then(value => {
       if (value) {
-        dispatch(setIsWelcomeDone(false));
+        dispatch(setIsOnBoardingDone(true));
       } else {
-        dispatch(setIsWelcomeDone(false));
+        dispatch(setIsOnBoardingDone(false));
       }
     });
   }, []);
   return (
-    <>
-      <NavigationContainer>
-        {isWelcomeDone ? <AppStack /> : <WelcomeStack />}
-      </NavigationContainer>
-    </>
+    <NavigationContainer>
+      {isOnBoardingDone ? <AppStack /> : <OnBoardingStack />}
+    </NavigationContainer>
   );
 };
 

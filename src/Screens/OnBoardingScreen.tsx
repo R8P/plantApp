@@ -5,20 +5,20 @@ import CustomButton from '../Components/CustomButton/CustomButton';
 import {Colors} from '../Constants/Colors';
 import {responsive, WIDTH} from '../Constants/Helpers';
 import {useAppDispatch} from '../Redux/store/store';
-import {setIsWelcomeDone} from '../Redux/reducers/reducers';
+import {setIsOnBoardingDone} from '../Redux/reducers/reducers';
 
-import WelcomePage1 from '../Components/WelcomePages/WelcomePage1';
-import WelcomePage2 from '../Components/WelcomePages/WelcomePage2';
-import WelcomePage3 from '../Components/WelcomePages/WelcomePage3';
+import OnBoarding1 from '../Components/OnBoardingScreens/OnBoarding1';
+import OnBoarding2 from '../Components/OnBoardingScreens/OnBoarding2';
+import OnBoarding3 from '../Components/OnBoardingScreens/OnBoarding3';
 
 type Props = {};
-const WelcomeScreen = (props: Props) => {
+const OnBoardingScreen = (props: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const dispatch = useAppDispatch();
 
   const goAppWithStorage = async () => {
-    await AsyncStorage.setItem('WELCOME_DONE', 'true');
-    dispatch(setIsWelcomeDone(true));
+    await AsyncStorage.setItem('ONBOARDING', 'true');
+    dispatch(setIsOnBoardingDone(true));
   };
   const actionButton = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -34,11 +34,11 @@ const WelcomeScreen = (props: Props) => {
   return (
     <View style={styles.container}>
       {activeIndex === 0 ? (
-        <WelcomePage1 />
+        <OnBoarding1 />
       ) : activeIndex === 1 ? (
-        <WelcomePage2 />
+        <OnBoarding2 />
       ) : (
-        <WelcomePage3 />
+        <OnBoarding3 />
       )}
       <View style={styles.buttons}>
         <CustomButton
@@ -58,7 +58,7 @@ const WelcomeScreen = (props: Props) => {
   );
 };
 
-export default WelcomeScreen;
+export default OnBoardingScreen;
 
 const styles = StyleSheet.create({
   container: {
