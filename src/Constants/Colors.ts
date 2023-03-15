@@ -9,5 +9,8 @@ export const Colors = {
   smokeWhite: 'rgba(255, 255, 255, 0.7)',
   grayWhite: 'rgba(255, 255, 255, 0.3)',
   tabbGray: '#979798',
-  categoryBorder:'rgba(60, 60, 67, 0.1)'
+  categoryBorder: 'rgba(60, 60, 67, 0.1)',
+  ctaBlack: '#24201A',
+  gold: '#E5C990',
+  // gold: '#F5C25B',
 };

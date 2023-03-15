@@ -15,7 +15,7 @@ const Main = (props: Props) => {
   useEffect(() => {
     AsyncStorage.getItem('WELCOME_DONE').then(value => {
       if (value) {
-        dispatch(setIsWelcomeDone(true));
+        dispatch(setIsWelcomeDone(false));
       } else {
         dispatch(setIsWelcomeDone(false));
       }

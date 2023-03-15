@@ -69,8 +69,22 @@ const HomeScreen = ({navigation}: Props) => {
       </ImageBackground>
       <View style={{flex: 0.75}}>
         <ScrollView style={styles.contentArea}>
+          <TouchableOpacity activeOpacity={0.8} style={styles.premiumCta}>
+            <Image
+              style={styles.messageIcon}
+              source={require('../Assets/message.png')}
+            />
+            <View style={styles.textCol}>
+              <Text style={styles.ctaTextBold}>FREE Premium Available</Text>
+              <Text style={styles.ctaText}>Tap to upgrade your account!</Text>
+            </View>
+            <Image
+              style={styles.arrowIcon}
+              source={require('../Assets/arrow.png')}
+            />
+          </TouchableOpacity>
           <View style={styles.questionsArea}>
-            <Text>Get Started</Text>
+            <Text style={styles.questionsTitle}>Get Started</Text>
             <ScrollView horizontal={true}>
               {questionList.map((item: QuestionsType, index: number) => {
                 return (
@@ -136,6 +150,12 @@ const styles = StyleSheet.create({
     flex: 0.25,
     paddingLeft: responsive(24),
   },
+  questionsTitle: {
+    color: Colors.black,
+    fontSize: responsive(16),
+    fontWeight: 'bold',
+    marginBottom: responsive(16),
+  },
   searchRow: {
     marginTop: responsive(20),
   },
@@ -196,7 +216,8 @@ const styles = StyleSheet.create({
     fontSize: responsive(15),
   },
   categoriesArea: {
-    // flex: 1,
+    flex: 1,
+    paddingBottom:responsive(20),
     marginTop: responsive(24),
     marginHorizontal: responsive(24),
     flexDirection: 'row',
@@ -230,5 +251,38 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     width: responsive(170),
     height: responsive(170),
+  },
+  premiumCta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.ctaBlack,
+    marginHorizontal: responsive(24),
+    borderRadius: 12,
+    height: responsive(64),
+    marginVertical: responsive(24),
+    paddingHorizontal: responsive(20),
+    justifyContent: 'space-between',
+  },
+  messageIcon: {
+    resizeMode: 'contain',
+    width: responsive(56),
+    height: responsive(50),
+  },
+  arrowIcon: {
+    resizeMode: 'contain',
+    width: responsive(30),
+    height: responsive(30),
+  },
+  textCol: {
+    flexDirection: 'column',
+  },
+  ctaTextBold: {
+    color: Colors.gold,
+    fontWeight: '600',
+    fontSize: responsive(18),
+  },
+  ctaText: {
+    color: Colors.gold,
+    fontSize: responsive(15),
   },
 });
