@@ -1,12 +1,10 @@
 import {
   ImageBackground,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
   Image,
   ScrollView,
-  TouchableOpacity,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import PremiumModal from '../Components/PremiumModal/PremiumModal';
@@ -23,6 +21,9 @@ import {
 } from '../Constants/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {getCategories, getQuestions} from '../Redux/actions/actions';
+import QuestionCard from '../Components/QuestionCard/QuestionCard';
+import CategoryCard from '../Components/CategoryCard/CategoryCard';
+import PremiumCta from '../Components/PremiumCta/PremiumCta';
 
 type Props = {
   navigation: NativeStackNavigationProp<AppStackParams, 'HomeScreen'>;
@@ -64,42 +65,21 @@ const HomeScreen = ({navigation}: Props) => {
       </ImageBackground>
       <View style={{flex: 0.75}}>
         <ScrollView style={styles.contentArea}>
-          <TouchableOpacity
+          <PremiumCta
             onPress={() => {
               dispatch(setPremiumModal());
             }}
-            activeOpacity={0.8}
-            style={styles.premiumCta}>
-            <Image
-              style={styles.messageIcon}
-              source={require('../Assets/message.png')}
-            />
-            <View style={styles.textCol}>
-              <Text style={styles.ctaTextBold}>FREE Premium Available</Text>
-              <Text style={styles.ctaText}>Tap to upgrade your account!</Text>
-            </View>
-            <Image
-              style={styles.arrowIcon}
-              source={require('../Assets/arrow.png')}
-            />
-          </TouchableOpacity>
+          />
           <View style={styles.questionsArea}>
             <Text style={styles.questionsTitle}>Get Started</Text>
             <ScrollView horizontal={true}>
               {questions.map((item: QuestionsType, index: number) => {
                 return (
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.questionCard}
-                    key={index}>
-                    <Image
-                      style={styles.questionImg}
-                      source={{uri: item.image_uri}}
-                    />
-                    <View style={styles.questionTextBox}>
-                      <Text style={styles.questionText}>{item.title}</Text>
-                    </View>
-                  </TouchableOpacity>
+                  <QuestionCard
+                    key={index}
+                    text={item.title}
+                    image_uri={item.image_uri}
+                  />
                 );
               })}
             </ScrollView>
@@ -107,16 +87,11 @@ const HomeScreen = ({navigation}: Props) => {
           <View style={styles.categoriesArea}>
             {categories.map((item: CategoriesType, index: number) => {
               return (
-                <TouchableOpacity
+                <CategoryCard
                   key={index}
-                  activeOpacity={0.8}
-                  style={styles.categoryCard}>
-                  <Text style={styles.categoryText}>{item.title}</Text>
-                  <Image
-                    style={styles.categoryCardImg}
-                    source={{uri: item.image.url}}
-                  />
-                </TouchableOpacity>
+                  image_uri={item.image.url}
+                  text={item.title}
+                />
               );
             })}
           </View>
@@ -191,30 +166,7 @@ const styles = StyleSheet.create({
     fontSize: responsive(24),
     fontWeight: '600',
   },
-  questionCard: {
-    marginRight: responsive(10),
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  questionImg: {
-    resizeMode: 'contain',
-    width: responsive(240),
-    height: responsive(164),
-    borderRadius: 15,
-  },
-  questionTextBox: {
-    position: 'absolute',
-    bottom: 10,
-    height: responsive(60),
-    width: responsive(240),
-    justifyContent: 'center',
-    paddingHorizontal: responsive(14),
-  },
-  questionText: {
-    color: Colors.white,
-    fontWeight: '600',
-    fontSize: responsive(15),
-  },
+
   categoriesArea: {
     flex: 1,
     paddingBottom: responsive(20),
@@ -224,65 +176,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     gap: 16,
-  },
-  categoryCard: {
-    borderRadius: 12,
-    backgroundColor: Colors.white,
-    shadowColor: Colors.black,
-    borderWidth: 1,
-    borderColor: Colors.categoryBorder,
-    shadowOffset: {
-      width: 2,
-      height: 0,
-    },
-  },
-  categoryText: {
-    position: 'absolute',
-    zIndex: 99,
-    top: 16,
-    left: 16,
-    width: responsive(100),
-    color: Colors.black,
-    fontSize: responsive(16),
-    fontWeight: '600',
-  },
-  categoryCardImg: {
-    resizeMode: 'cover',
-    borderRadius: 12,
-    width: responsive(170),
-    height: responsive(170),
-  },
-  premiumCta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: Colors.ctaBlack,
-    marginHorizontal: responsive(24),
-    borderRadius: 12,
-    height: responsive(64),
-    marginVertical: responsive(24),
-    paddingHorizontal: responsive(20),
-    justifyContent: 'space-between',
-  },
-  messageIcon: {
-    resizeMode: 'contain',
-    width: responsive(56),
-    height: responsive(50),
-  },
-  arrowIcon: {
-    resizeMode: 'contain',
-    width: responsive(30),
-    height: responsive(30),
-  },
-  textCol: {
-    flexDirection: 'column',
-  },
-  ctaTextBold: {
-    color: Colors.gold,
-    fontWeight: '600',
-    fontSize: responsive(18),
-  },
-  ctaText: {
-    color: Colors.gold,
-    fontSize: responsive(15),
   },
 });
