@@ -5,6 +5,7 @@ import Tabbar from '../Components/Tabbar/Tabbar';
 import DiagnoseScreen from '../Screens/DiagnoseScreen';
 import MyGardenScreen from '../Screens/MyGardenScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
+import CameraScreen from '../Screens/CameraScreen';
 
 const App = createBottomTabNavigator();
 const screenOptions = {
@@ -17,10 +18,16 @@ const AppStack = () => {
     <App.Navigator
       initialRouteName="HomeScreen"
       screenOptions={screenOptions}
-    //   tabBar={props => <Tabbar {...props} />}
-      >
+      tabBar={props => (
+        <Tabbar
+          navigation={props.navigation}
+          descriptors={props.descriptors}
+          state={props.state}
+        />
+      )}>
       <App.Screen name="HomeScreen" component={HomeScreen} />
       <App.Screen name="DiagnoseScreen" component={DiagnoseScreen} />
+      <App.Screen name="CameraScreen" component={CameraScreen} />
       <App.Screen name="MyGardenScreen" component={MyGardenScreen} />
       <App.Screen name="ProfileScreen" component={ProfileScreen} />
     </App.Navigator>
