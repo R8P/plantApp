@@ -64,7 +64,12 @@ const HomeScreen = ({navigation}: Props) => {
       </ImageBackground>
       <View style={{flex: 0.75}}>
         <ScrollView style={styles.contentArea}>
-          <TouchableOpacity activeOpacity={0.8} style={styles.premiumCta}>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(setPremiumModal());
+            }}
+            activeOpacity={0.8}
+            style={styles.premiumCta}>
             <Image
               style={styles.messageIcon}
               source={require('../Assets/message.png')}

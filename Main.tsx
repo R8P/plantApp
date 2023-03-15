@@ -6,11 +6,13 @@ import OnBoardingStack from './src/Stacks/OnBoardingStack';
 import {useAppDispatch, useAppSelector} from './src/Redux/store/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setIsOnBoardingDone} from './src/Redux/reducers/reducers';
+import Splash from './src/Components/Splash/Splash';
 
 type Props = {};
 
 const Main = (props: Props) => {
   const {isOnBoardingDone} = useAppSelector(state => state.global);
+  const [splashState, setSplashState] = useState(true);
   const dispatch = useAppDispatch();
   useEffect(() => {
     AsyncStorage.getItem('ONBOARDING').then(value => {
@@ -19,11 +21,18 @@ const Main = (props: Props) => {
       } else {
         dispatch(setIsOnBoardingDone(false));
       }
+      setSplashState(false);
     });
   }, []);
   return (
     <NavigationContainer>
-      {isOnBoardingDone ? <AppStack /> : <OnBoardingStack />}
+      {splashState ? (
+        <Splash />
+      ) : isOnBoardingDone ? (
+        <AppStack />
+      ) : (
+        <OnBoardingStack />
+      )}
     </NavigationContainer>
   );
 };
