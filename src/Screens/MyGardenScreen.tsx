@@ -3,7 +3,7 @@ import React from 'react'
 
 const MyGardenScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>MyGardenScreen</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const MyGardenScreen = () => {
 
 export default MyGardenScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

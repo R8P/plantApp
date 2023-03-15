@@ -3,7 +3,7 @@ import React from 'react'
 
 const DiagnoseScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>DiagnoseScreen</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const DiagnoseScreen = () => {
 
 export default DiagnoseScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
